@@ -15,28 +15,28 @@ import java.util.Optional;
 public class SuperHeroesController {
 
     @Autowired
-    private SuperHeroesService superHeroesService;
+    protected SuperHeroesService superHeroesService;
     @Autowired
-    private SuperHeroesRepository superHeroesRepository;
+    protected SuperHeroesRepository superHeroesRepository;
     @GetMapping
-    private ResponseEntity<List<SuperHeroesEntity>> getAllSuperHeroes(){
+    protected ResponseEntity<List<SuperHeroesEntity>> getAllSuperHeroes(){
             return ResponseEntity.ok(superHeroesService.searchAll());
     }
 
     @GetMapping("/getSuperHeroes/{id}")
-    private ResponseEntity<Optional<SuperHeroesEntity>> getSuperHeroesId(@PathVariable Long id){
+    protected ResponseEntity<Optional<SuperHeroesEntity>> getSuperHeroesId(@PathVariable Long id){
         return ResponseEntity.ok(superHeroesService.findById(id));
     }
     @PostMapping("/create/{name}")
-    private ResponseEntity<SuperHeroesEntity> addSuperHeroes(@PathVariable String name){
+    protected ResponseEntity<SuperHeroesEntity> addSuperHeroes(@PathVariable String name){
         return ResponseEntity.ok(superHeroesService.create(name));
     }
     @PutMapping("/update/{id}")
-    private ResponseEntity<SuperHeroesEntity> upadateSuperHeroes(@PathVariable Long id, @RequestBody SuperHeroesEntity superHeroes){
+    protected ResponseEntity<SuperHeroesEntity> upadateSuperHeroes(@PathVariable Long id, @RequestBody SuperHeroesEntity superHeroes){
         return ResponseEntity.ok(superHeroesService.update(superHeroes));
     }
     @DeleteMapping("/delete/{id}")
-    private ResponseEntity<Void> deleteSuperHeroes(@PathVariable Long id){
+    protected ResponseEntity<Void> deleteSuperHeroes(@PathVariable Long id){
         superHeroesService.deleteById(id);
 
         return ResponseEntity.noContent().build();
