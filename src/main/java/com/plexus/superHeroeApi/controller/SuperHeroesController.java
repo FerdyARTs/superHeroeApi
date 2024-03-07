@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/superheroes")
-@Tag(name="Controlador de SuperHeroes Api")
 public class SuperHeroesController {
 
     @Autowired
