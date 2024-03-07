@@ -5,10 +5,13 @@ import com.plexus.superHeroeApi.exceptions.NotFoundException;
 import com.plexus.superHeroeApi.persistence.entity.SuperHeroesEntity;
 import com.plexus.superHeroeApi.persistence.repository.SuperHeroesRepository;
 import com.plexus.superHeroeApi.service.SuperHeroesService;
+
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,7 @@ public class SuperHeroesServiceImpl  implements SuperHeroesService {
     private final SuperHeroesRepository superHeroesRepository;
 
     @Override
+    @Cacheable("myCache")
     public List<SuperHeroesEntity> searchAll() {
         return superHeroesRepository.findAll()
                 .stream()
@@ -48,6 +52,7 @@ public class SuperHeroesServiceImpl  implements SuperHeroesService {
     }
 
     @Override
+    @CachePut("myCache")
     public SuperHeroesEntity update(SuperHeroesEntity superHeroe) {
         return superHeroesRepository.findById(superHeroe.getId())
                 .map(heroesEntity -> {
