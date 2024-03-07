@@ -4,6 +4,9 @@ import com.plexus.superHeroeApi.persistence.annotations.CustomTimed;
 import com.plexus.superHeroeApi.persistence.entity.SuperHeroesEntity;
 import com.plexus.superHeroeApi.persistence.repository.SuperHeroesRepository;
 import com.plexus.superHeroeApi.service.SuperHeroesService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/superheroes")
+@Tag(name="Controlador de SuperHeroes Api")
 public class SuperHeroesController {
 
     @Autowired
